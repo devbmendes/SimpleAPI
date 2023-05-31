@@ -21,5 +21,5 @@ public interface StudentService {
 	
 	public ResponseEntity<Student> save(StudentRequest studentRequest);
 
-	ResponseEntity<Student> findById(String email);
+	
 }

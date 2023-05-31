@@ -1,16 +1,16 @@
 package com.devb.simpleapi.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-import com.devb.simpleapi.controller.StudentController;
 import com.devb.simpleapi.model.Student;
 import com.devb.simpleapi.model.StudentRequest;
 import com.devb.simpleapi.repository.StudentRepository;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
 	@Autowired
@@ -34,8 +34,12 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public ResponseEntity<Student> save(StudentRequest studentRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		Student student = new Student();
+		student.setEmail(studentRequest.getEmail());
+		student.setFirstname(studentRequest.getFirstname());
+		student.setLastname(studentRequest.getLastname());
+		student.setTelefone(studentRequest.getTelefoneString());
+		return ResponseEntity.ok(studentRepository.save(student));
 	}
 
 	@Override
@@ -52,12 +56,6 @@ public class StudentServiceImpl implements StudentService {
 		}
 		return null;
 
-	}
-
-	@Override
-	public ResponseEntity<Student> findById(String email) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
