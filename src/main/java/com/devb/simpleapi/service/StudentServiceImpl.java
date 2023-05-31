@@ -39,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
 		student.setEmail(studentRequest.getEmail());
 		student.setFirstname(studentRequest.getFirstname());
 		student.setLastname(studentRequest.getLastname());
-		student.setTelefone(studentRequest.getTelefoneString());
+		student.setTelefone(studentRequest.getTelefone());
 		return new ResponseEntity<>(studentRepository.save(student), HttpStatus.CREATED);
 	}
 
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
 			student.setEmail(studentRequest.getEmail());
 			student.setFirstname(studentRequest.getFirstname());
 			student.setLastname(studentRequest.getLastname());
-			student.setTelefone(studentRequest.getTelefoneString());
+			student.setTelefone(studentRequest.getTelefone());
 
 			return ResponseEntity.ok(studentRepository.save(student));
 		}

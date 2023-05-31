@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devb.simpleapi.exception.StudentNotFoundException;
 import com.devb.simpleapi.model.Student;
 import com.devb.simpleapi.model.StudentRequest;
 import com.devb.simpleapi.service.StudentService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/student")
@@ -37,8 +40,13 @@ public class StudentController {
 		return studentService.findByEmail(email);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<Student> findById(@PathVariable Integer id) throws StudentNotFoundException{
+		return studentService.findById(id);
+	}
+	
 	@PostMapping
-	public ResponseEntity<Student> save(@RequestBody StudentRequest studentRequest ){
+	public ResponseEntity<Student> save(@RequestBody @Valid StudentRequest studentRequest ){
 		return studentService.save(studentRequest);
 	}
 	
@@ -50,4 +58,5 @@ public class StudentController {
 	public ResponseEntity<Student> update(@PathVariable("id") Integer id, @RequestBody StudentRequest st){
 		return studentService.updateById(id, st);
 	}
+	
 }
