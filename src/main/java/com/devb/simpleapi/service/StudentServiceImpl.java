@@ -3,6 +3,7 @@ package com.devb.simpleapi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public ResponseEntity<List<Student>> findAllStudent() {
-		return ResponseEntity.ok(studentRepository.findAll());
+		return new ResponseEntity<>(studentRepository.findAll(),HttpStatus.OK);
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class StudentServiceImpl implements StudentService {
 		student.setFirstname(studentRequest.getFirstname());
 		student.setLastname(studentRequest.getLastname());
 		student.setTelefone(studentRequest.getTelefoneString());
-		return ResponseEntity.ok(studentRepository.save(student));
+		return new ResponseEntity<>(studentRepository.save(student), HttpStatus.CREATED);
 	}
 
 	@Override

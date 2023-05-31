@@ -1,10 +1,28 @@
 package com.devb.simpleapi.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+
 public class StudentRequest {
 	
+	@NotEmpty(message = "Firstname should not be empty")
+	@Min(value = 3, message = "MIN 3 Letters")
+	@Max(value = 30, message = "MAX 3 0Letters")
 	private String firstname;
+	
+	@Min(value = 3, message = "MIN 3 Letters")
+	@Max(value = 30, message = "MAX 3 0Letters")
+	@NotEmpty(message = "Lastname should not be empty")
 	private String lastname;
+	
+	@Email(message = "Enter a valid email")
 	private String email;
+	
+	@NotEmpty
+	@Pattern(regexp = "^\\\\d{9}$")
 	private String telefoneString;
 	
 	
