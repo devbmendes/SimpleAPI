@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+
 @RestControllerAdvice
 public class AppExceptionHandler {
 	
@@ -24,5 +25,12 @@ public class AppExceptionHandler {
 		return errorMap;
 	}
 	 
+//	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//	@ExceptionHandler(com.devb.simpleapi.exception.NoSuchElementException.class)
+//	public Map<String, String> handleInvalidArgument(com.devb.simpleapi.exception.NoSuchElementException ex){
+//		Map<String, String> errorMap = new HashMap<>();
+//		errorMap.put("Error Message", ex.getMessage());
+//		return errorMap;
+//	}
 
 }

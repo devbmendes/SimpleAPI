@@ -1,6 +1,7 @@
 package com.devb.simpleapi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,8 +62,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public ResponseEntity<Student> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Student student = studentRepository.findById(id).get();
+	
+		return new ResponseEntity<>(student,HttpStatus.OK);
+			
 	}
 
 }

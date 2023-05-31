@@ -3,7 +3,6 @@ package com.devb.simpleapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devb.simpleapi.exception.StudentNotFoundException;
 import com.devb.simpleapi.model.Student;
 import com.devb.simpleapi.model.StudentRequest;
 import com.devb.simpleapi.service.StudentService;
@@ -41,7 +39,7 @@ public class StudentController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Student> findById(@PathVariable Integer id) throws StudentNotFoundException{
+	public ResponseEntity<Student> findById(@PathVariable Integer id){
 		return studentService.findById(id);
 	}
 	
