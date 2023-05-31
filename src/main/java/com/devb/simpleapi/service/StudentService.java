@@ -11,13 +11,15 @@ public interface StudentService {
 	
 	public ResponseEntity<List<Student>> findAllStudent();
 	
-	public ResponseEntity<Student> findById(String email);
+	public ResponseEntity<Student> findById(Integer id);
 	
-	public ResponseEntity<Student> updateByEmail(String email);
+	public ResponseEntity<Student> updateById(Integer id, StudentRequest studentRequest);
 	
 	public void deletById(Integer id);
 
-	ResponseEntity<Student> findByEmail(String email);
+	public ResponseEntity<Student> findByEmail(String email);
 	
 	public ResponseEntity<Student> save(StudentRequest studentRequest);
+
+	ResponseEntity<Student> findById(String email);
 }
