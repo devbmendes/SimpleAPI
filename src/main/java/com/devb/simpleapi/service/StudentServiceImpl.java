@@ -26,7 +26,8 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findByEmail(String email) {
-		return studentRepository.findByEmail(email).orElseThrow(()-> 
+		Optional<Student> student = studentRepository.findByEmail(email);
+		return student.orElseThrow(()-> 
 		new ObjectNotFoundException("Object with EMAIL : "+email+" not found"));
 	}
 
