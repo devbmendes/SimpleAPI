@@ -4,12 +4,14 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class StudentRequest {
 
 	@NotEmpty(message = "Firstname should not be empty")
 	@NotBlank
+	@NotNull
 	@Min(value = 3, message = "Firstname should be between 3 and 30 character")
 	private String firstname;
 

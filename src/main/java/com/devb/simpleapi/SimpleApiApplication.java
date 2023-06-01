@@ -14,16 +14,16 @@ public class SimpleApiApplication implements CommandLineRunner {
 
 	@Autowired
 	StudentRepository studentRepository;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleApiApplication.class, args);
-		
+
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		Student student1 = new Student(null,"Balduino","Mendes","baldhuino@gmail.com","933018608");
-		Student student2 = new Student(null,"Helton","Soares","helton@gmail.com","934982608");
+		Student student1 = new Student(null, "Balduino", "Mendes", "baldhuino@gmail.com", "933018608");
+		Student student2 = new Student(null, "Helton", "Soares", "helton@gmail.com", "934982608");
 		studentRepository.save(student1);
 		studentRepository.save(student2);
 	}
