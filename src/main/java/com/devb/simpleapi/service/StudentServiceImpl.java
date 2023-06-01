@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.devb.simpleapi.model.Student;
 import com.devb.simpleapi.model.StudentRequest;
 import com.devb.simpleapi.repository.StudentRepository;
+import com.devb.simpleapi.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -64,7 +65,7 @@ public class StudentServiceImpl implements StudentService {
 	public Student findById(Integer id) {
 		Optional<Student> student = studentRepository.findById(id);
 	
-		return  student.orElse(null);
+		return  student.orElseThrow(()-> new ObjectNotFoundException("Object with ID :"+id+" not found"));
 			
 	}
 
