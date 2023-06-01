@@ -1,14 +1,16 @@
 package com.devb.simpleapi.controller.exceptions;
 
+import java.time.LocalDate;
+
 public class StandardError {
-	
-	private Long timestamp;
+
+	private LocalDate timestamp;
 	private Integer status;
 	private String message;
-	public Long getTimestamp() {
+	public LocalDate getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(Long timestamp) {
+	public void setTimestamp(LocalDate timestamp) {
 		this.timestamp = timestamp;
 	}
 	public Integer getStatus() {
@@ -23,7 +25,7 @@ public class StandardError {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public StandardError(Long timestamp, Integer status, String message) {
+	public StandardError(LocalDate timestamp, Integer status, String message) {
 		super();
 		this.timestamp = timestamp;
 		this.status = status;
@@ -32,7 +34,7 @@ public class StandardError {
 	public StandardError() {
 		
 	}
-	
+
 	
 
 }
