@@ -20,13 +20,14 @@ public class StudentServiceImpl implements StudentService {
 	StudentRepository studentRepository;
 
 	@Override
-	public ResponseEntity<List<Student>> findAllStudent() {
-		return new ResponseEntity<>(studentRepository.findAll(),HttpStatus.OK);
+	public List<Student> findAllStudent() {
+		return studentRepository.findAll();
 	}
 
 	@Override
-	public ResponseEntity<Student> findByEmail(String email) {
-		return ResponseEntity.ok(studentRepository.findByEmail(email).get());
+	public Student findByEmail(String email) {
+		return studentRepository.findByEmail(email).orElseThrow(()-> 
+		new ObjectNotFoundException("Object with EMAIL : "+email+" not found"));
 	}
 
 	@Override
@@ -36,37 +37,34 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public ResponseEntity<Student> save(StudentRequest studentRequest) {
+	public Student save(StudentRequest studentRequest) {
 		Student student = new Student();
 		student.setEmail(studentRequest.getEmail());
 		student.setFirstname(studentRequest.getFirstname());
 		student.setLastname(studentRequest.getLastname());
 		student.setTelefone(studentRequest.getTelefone());
-		return new ResponseEntity<>(studentRepository.save(student), HttpStatus.CREATED);
+		return studentRepository.save(student);
 	}
 
 	@Override
-	public ResponseEntity<Student> updateById(Integer id, StudentRequest studentRequest) {
-		Student student = studentRepository.findById(id).get();
-		if (student != null) {
+	public Student updateById(Integer id, StudentRequest studentRequest) {
+		Student student = this.findById(id);
 			student.setId(id);
 			student.setEmail(studentRequest.getEmail());
 			student.setFirstname(studentRequest.getFirstname());
 			student.setLastname(studentRequest.getLastname());
 			student.setTelefone(studentRequest.getTelefone());
 
-			return ResponseEntity.ok(studentRepository.save(student));
-		}
-		return null;
-
+			return studentRepository.save(student);
+		
 	}
 
 	@Override
 	public Student findById(Integer id) {
 		Optional<Student> student = studentRepository.findById(id);
-	
-		return  student.orElseThrow(()-> new ObjectNotFoundException("Object with ID :"+id+" not found"));
-			
+
+		return student.orElseThrow(() -> new ObjectNotFoundException("Object with ID :" + id + " not found"));
+
 	}
 
 }

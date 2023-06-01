@@ -23,39 +23,39 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/v1/student")
 public class StudentController {
-	
+
 	@Autowired
 	StudentService studentService;
-	
-	
+
 	@GetMapping("/all")
-	public ResponseEntity<List<Student>> findAllStudent(){
-		return studentService.findAllStudent();
+	public ResponseEntity<List<Student>> findAllStudent() {
+		return ResponseEntity.ok(studentService.findAllStudent());
 	}
 
 	@GetMapping
-	public ResponseEntity<Student> findByEmail(@RequestParam(value = "email") String email){
-		return studentService.findByEmail(email);
+	public ResponseEntity<Student> findByEmail(@RequestParam(value = "email") String email) {
+		return ResponseEntity.ok(studentService.findByEmail(email));
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Student> findById(@PathVariable Integer id){
+	public ResponseEntity<Student> findById(@PathVariable Integer id) {
 		Student student = studentService.findById(id);
 		return ResponseEntity.ok(student);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Student> save(@RequestBody @Valid StudentRequest studentRequest ){
-		return studentService.save(studentRequest);
+	public ResponseEntity<Student> save(@RequestBody @Valid StudentRequest studentRequest) {
+		return ResponseEntity.ok( studentService.save(studentRequest));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		studentService.deletById(id);
 	}
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Student> update(@PathVariable("id") Integer id, @RequestBody StudentRequest st){
-		return studentService.updateById(id, st);
+	public ResponseEntity<Student> update(@PathVariable("id") Integer id, @RequestBody StudentRequest st) {
+		return ResponseEntity.ok(studentService.updateById(id, st));
 	}
-	
+
 }
