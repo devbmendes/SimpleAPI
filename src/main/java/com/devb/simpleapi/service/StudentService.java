@@ -11,7 +11,7 @@ public interface StudentService {
 	
 	public ResponseEntity<List<Student>> findAllStudent();
 	
-	public ResponseEntity<Student> findById(Integer id) ;
+	public Student findById(Integer id) ;
 	public ResponseEntity<Student> updateById(Integer id, StudentRequest studentRequest);
 	
 	public void deletById(Integer id);

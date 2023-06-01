@@ -61,10 +61,10 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public ResponseEntity<Student> findById(Integer id) {
-		Student student = studentRepository.findById(id).get();
+	public Student findById(Integer id) {
+		Optional<Student> student = studentRepository.findById(id);
 	
-		return new ResponseEntity<>(student,HttpStatus.OK);
+		return  student.orElse(null);
 			
 	}
 
