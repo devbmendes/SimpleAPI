@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.devb.simpleapi.service.exceptions.DataIntegratyViolationException;
+import com.devb.simpleapi.service.exceptions.HttpRequestMethodNotSupportedException;
 import com.devb.simpleapi.service.exceptions.ObjectNotFoundException;
 
 @RestControllerAdvice
@@ -22,6 +23,13 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(DataIntegratyViolationException.class)
 	public ResponseEntity<StandardError> objectNotFound(DataIntegratyViolationException ex) {
+		StandardError standardError = new StandardError(LocalDate.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(standardError);
+	}
+	
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	public ResponseEntity<StandardError> objectNotFound(HttpRequestMethodNotSupportedException ex) {
 		StandardError standardError = new StandardError(LocalDate.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage());
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(standardError);

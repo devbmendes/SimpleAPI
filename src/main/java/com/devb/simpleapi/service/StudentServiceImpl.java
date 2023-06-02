@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.devb.simpleapi.model.Student;
@@ -33,6 +31,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void deletById(Integer id) {
+		findById(id);
 		studentRepository.deleteById(id);
 
 	}
