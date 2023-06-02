@@ -22,7 +22,7 @@ import com.devb.simpleapi.service.StudentService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/student")
+@RequestMapping("/v1/student")
 @CrossOrigin("**")
 public class StudentController {
 
