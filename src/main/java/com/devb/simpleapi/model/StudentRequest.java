@@ -9,16 +9,23 @@ import jakarta.validation.constraints.Pattern;
 
 public class StudentRequest {
 
+	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@NotEmpty(message = "Firstname should not be empty")
 	@NotBlank
 	@NotNull
-	@Min(value = 3, message = "Firstname should be between 3 and 30 character")
 	private String firstname;
 
 	@NotEmpty(message = "Lastname should not be empty")
 	@NotBlank
-	@Min(value = 3, message = "Lastname should be between 3 and 30 character")
-	
 	private String lastname;
 
 	@Email(message = "Enter a valid email")
