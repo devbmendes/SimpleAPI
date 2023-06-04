@@ -36,14 +36,6 @@ public class StudentServiceImpl implements StudentService {
 
 	}
 
-	public Student checkEmail(StudentRequest studentRequest) {
-		Optional<Student> st = studentRepository.findByEmail(studentRequest.getEmail());
-		if (st.isPresent() && !st.get().getId().equals(studentRequest.getId())) {
-			throw new DataIntegratyViolationException("Email already exists in DB");
-		}
-		return st.get();
-	}
-
 	@Override
 	public Student save(StudentRequest studentRequest) {
 		Optional<Student> st = studentRepository.findByEmail(studentRequest.getEmail());
@@ -61,10 +53,8 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student updateStudent(StudentRequest studentRequest) {
+		
 		Student student = new Student();
-		checkEmail(studentRequest);
-		student.setId(studentRequest.getId());
-		student.setId(studentRequest.getId());
 		student.setEmail(studentRequest.getEmail());
 		student.setFirstname(studentRequest.getFirstname());
 		student.setLastname(studentRequest.getLastname());
@@ -72,6 +62,14 @@ public class StudentServiceImpl implements StudentService {
 
 		return studentRepository.save(student);
 	}
+	
+	public void checkEmail(StudentRequest studentRequest) {
+		Optional<Student> st = studentRepository.findByEmail(studentRequest.getEmail());
+		if (st.isPresent() && !st.get().getId().equals(studentRequest.getId())) {
+			throw new DataIntegratyViolationException("Email already exists in DB");
+		}
+	}
+
 
 	@Override
 	public Student findById(Integer id) {
