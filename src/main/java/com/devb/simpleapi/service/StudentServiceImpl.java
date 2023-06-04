@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
 	public Student updateStudent(StudentRequest studentRequest) {
 		Student student = new Student();
 		checkEmail(studentRequest);
-		student.setId(null);
+		student.setId(studentRequest.getId());
 		student.setId(studentRequest.getId());
 		student.setEmail(studentRequest.getEmail());
 		student.setFirstname(studentRequest.getFirstname());
