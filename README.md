@@ -26,7 +26,8 @@ To build and run the project, follow these steps:
  3. Run the project: Run as Spring Boot Application
  4. You can use de Postman tools or whatever you want
  
--> The application will be available in http://localhost:8080 or https://student-spring-api-production.up.railway.app/v1/student
+-> The application will be available in : <br/>
+http://localhost:8080 <br> https://student-spring-api-production.up.railway.app/v1/student
 ## Endpoins
 
  1. Get all students - GET`localhost:8080/api/v1/student/all`
